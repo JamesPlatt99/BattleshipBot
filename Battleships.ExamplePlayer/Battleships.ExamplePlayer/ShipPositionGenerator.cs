@@ -58,7 +58,7 @@ namespace Battleships.ExamplePlayer
             {
                 for (int i = (int)position.startRow; i <= (int)position.endRow; i++)
                 {
-                    if (i > 75)
+                    if (i > 74)
                     {
                         return false;
                     }
@@ -94,7 +94,7 @@ namespace Battleships.ExamplePlayer
 
         private bool OrientationIsHorizontal()
         {
-            return (random.Next(1, 2) == 1);
+            return (random.Next(1, 100) % 2 == 0);
         }
 
         private int GetStartColOrRow()

@@ -59,6 +59,7 @@
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShipPositionGenerator.cs" />
+    <Compile Include="ShotGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -16,6 +16,7 @@ namespace Battleships.ExamplePlayer
         {
             OccupiedPositions = new List<Position>();
             ShipPositionGenerator shipPositionGenerator= new ShipPositionGenerator();
+            ShotGenerator.resetProps();
             return new List<IShipPosition>
             {
                 GetShipPosition(shipPositionGenerator.GetPosition(5)),
@@ -28,17 +29,23 @@ namespace Battleships.ExamplePlayer
 
         public IGridSquare SelectTarget()
         {
-            var nextTarget = GetNextTarget();
+            ShotGenerator shotGenerator = new ShotGenerator();
+            Position newPosition = shotGenerator.GetPosition();
+            IGridSquare nextTarget = new GridSquare(newPosition.Row, newPosition.Col);
             LastTarget = nextTarget;
             return nextTarget;
         }
 
         public void HandleShotResult(IGridSquare square, bool wasHit)
         {
-            if (wasHit)
-            {
-                shipsHit.Add(square);
-            }
+            ShotGenerator.LastShotHit = false;
+            if (!wasHit) return;
+            ShotGenerator.LastShotHit = true;
+            ShotGenerator.FoundShip = true;
+            ShotGenerator.LastHit = new Position(square.Row, square.Column);
+            ShotGenerator.Board[(int) square.Row - 65, square.Column-1] = 'h';
+            ShotGenerator.Direction = ShotGenerator.GetDirection(new Position(square.Row, square.Column));
+            shipsHit.Add(square);
         }
 
         public void HandleOpponentsShot(IGridSquare square) {}
