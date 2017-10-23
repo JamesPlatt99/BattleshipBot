@@ -66,6 +66,6 @@ namespace BattleshipBot
       // Ignore what our opponent does
     }
 
-    public string Name => "Simple Example Bot";
+    public string Name => "Bot Allu";
   }
 }
